@@ -12,15 +12,14 @@ class Solution(object):
         :rtype: None Do not return anything, modify nums in-place instead.
         """
         displacement = 0
-        index = 0
         length = len(nums)
+        for i in range(length):
+            if nums[i] == 0:
+                nums.pop(i)
+                length = length - 1
+                displacement = displacement + 1
+                nums.append(0)
 
-        while index<length:
-            if nums[index]==0:
-                nums.pop(int(index-displacement))
-                displacement-=1
-                length=length-1
-            index = index + 1
             
 # @lc code=end
 
