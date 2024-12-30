@@ -11,15 +11,18 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        max_len = 0
-        start = 0
-        used = []
+        point = 0 
+        max_length = 0
+        chars = set()
+        charslist = list()
         for i in range(len(s)):
-            if s[i] in used:
-                start = max(start, used.index(s[i]) + 1)
-            used.append(s[i])
-            max_len = max(max_len, i - start + 1)
-        return max_len
-    
+            if s[i] in chars:
+                while s[point] != s[i]:
+                    chars.remove(s[point])
+                    point += 1
+                point += 1
+            else:
+                chars.add(s[i])
+                max_length = max(max_length, i - point + 1)
 # @lc code=end
 

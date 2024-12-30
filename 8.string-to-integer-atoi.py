@@ -11,25 +11,38 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        sign = 1
-        if s[0] == '-':
-            sign -= 2
-        s = s[1:]
+        s = s.strip()
         if not s:
             return 0
-        n = 0 
+        
+        if s[0] =='-':
+            sign = -1
+            s = s[1:]
+        elif s[0] == '+':
+            sign = 1
+            s = s[1:]
+        else:
+            sign = 1
+        digits = ''
         for i in s:
             if i.isdigit():
-                n = n * 10 + int(i)
+                digits += i
             else:
                 break
-        n = n * sign
-        if n > 2**31 - 1:
+        if len(digits) == 0:
+            return 0
+       
+
+        result = sign * int(digits)
+        if result > 2**31 - 1:
             return 2**31 - 1
-        if n < -2**31:
+        elif result < -2**31:
             return -2**31
-        return n
-    
+        else:
+            return result
+
+
+        
         
 # @lc code=end
 
